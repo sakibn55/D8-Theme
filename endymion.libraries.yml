@@ -8,3 +8,13 @@ global-js:
     js/main.js: {}
   dependencies:
     - core/jquery
+bootstrap-css:
+  css:
+    theme:
+      css/bootstrap.min.css: {}
+bootstrap-js:
+  js:
+    js/popper.min.js: {}
+    js/bootstrap.min.js: {}
+  dependencies:
+    - core/jquery
