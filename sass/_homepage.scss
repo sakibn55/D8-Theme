@@ -13,3 +13,6 @@ main{
 .layout-sidebar-second{
     @include span(2 last);
 }
+.views-row + .views-row{
+  margin: 20px 0px;
+}
