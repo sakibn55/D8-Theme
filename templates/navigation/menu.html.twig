@@ -48,18 +48,51 @@
         'nav-link' ~ menu_name|clean_class,
       ]
     %}
+    {%
+      set dropdown_link_classes = [
+        'nav-link  dropdown-toggle' ~ menu_name|clean_class,
+      ]
+    %}
   {% if items %}
     {% if menu_level == 0 %}
-      <ul{{ attributes.addClass('navbar-nav') }}>
+    
+      <ul{{ attributes.addClass('') }}>
     {% else %}
-      <ul {{ attributes.addClass('navbar-nav') }}>
+    
+      <ul {{ attributes.addClass('') }}>
     {% endif %}
     {% for item in items %}
-      <li{{ item.attributes.addClass(submenu_classes) }}>
-        {{ link(item.title, item.url, item.attributes.addClass(link_classes)) }}
-        {% if item.below %}
-          {{ menus.menu_links(item.below, attributes, menu_level + 1, main_menu) }}
-        {% endif %}
+      {% if item.below %}
+        <li{{ item.attributes.addClass(submenu_dropdown_classes) }}>
+        {{ link(item.title, item.url, item.attributes.addClass(dropdown_link_classes), item.attributes.setAttribute('data-toggle', 'dropdown')) }}
+          {{ menus.sub_menu_links(item.below, attributes, menu_level + 1, main_menu) }}
+      {% else %}
+        <li{{ item.attributes.addClass(submenu_classes) }} >
+         {{ link(item.title, item.url, item.attributes.addClass(link_classes)) }}
+      {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endmacro %}
+
+{% macro sub_menu_links(items, attributes, menu_level, main_menu) %}
+  {% import _self as menus %}
+    {%
+      set submenu_list_classes = [
+        'dropdown-menu' ~ main_menu|clean_class,
+      ]
+    %}
+    {%
+      set submenu_classes = [
+        'dropdown-item' ~ main_menu|clean_class,
+      ]
+    %}
+  {% if items %}
+      <ul {{ attributes.addClass(submenu_list_classes) }}>
+    {% for item in items %}
+      <li{{ item.attributes.addClass(submenu_classes) }} >
+        {{ link(item.title, item.url) }}
       </li>
     {% endfor %}
     </ul>
