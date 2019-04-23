@@ -1,15 +1,20 @@
 {% include directory ~ '/partials/header.html.twig' %}
 <div class="container">
+<div class="row">
   <main role="main">
     <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
 
     <div class="layout-content">
-      {{ page.content }}
+      <div class="col-sm-8">
+        {{ page.content }}
+      </div>
     </div>{# /.layout-content #}
 
     {% if page.sidebar %}
       <aside class="layout-sidebar-first" role="complementary">
+      <div class="col-sm-4">
         {{ page.sidebar }}
+        </div>
       </aside>
     {% endif %}
 
@@ -17,8 +22,10 @@
 
   {% if page.footer %}
     <footer role="contentinfo">
+    <div class="col-sm-12">
       {{ page.footer }}
+      </div>
     </footer>
   {% endif %}
-
+</div>
 </div>{# /.layout-container #}

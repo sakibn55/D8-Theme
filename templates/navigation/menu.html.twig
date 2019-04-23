@@ -56,10 +56,10 @@
   {% if items %}
     {% if menu_level == 0 %}
     
-      <ul{{ attributes.addClass('') }}>
+      <ul{{ attributes.addClass('') }} class="navbar-nav">
     {% else %}
     
-      <ul {{ attributes.addClass('') }}>
+      <ul {{ attributes.addClass('') }} class="navbar-nav">
     {% endif %}
     {% for item in items %}
       {% if item.below %}
